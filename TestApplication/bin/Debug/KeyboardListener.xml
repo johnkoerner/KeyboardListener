@@ -1,0 +1,965 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>KeyboardListener</name>
+    </assembly>
+    <members>
+        <member name="T:KeyboardListener.Listener">
+             <summary>
+             <example>This example shows how to use the <see cref="T:KeyboardListener.Listener"/> class.
+             <code>
+            private void Form1_Load(object sender, EventArgs e)
+            
+            {
+                lstKeys.Items.Clear();
+                lstKeys.Items.AddRange(Enum.GetNames(typeof(KeyboardListener.Keycode)));
+                SelectedKeys.Checked = true;
+            
+                // Listen for the A key to be pressed
+                oLis.AddKeycode(KeyboardListener.Keycode.VK_A);
+                oLis.KeyPressed += new KeyboardListener.Listener.KeypressedEventHandler(oLis_KeyPressed);
+                oLis.Listen();
+            }
+            
+            void oLis_KeyPressed(KeyboardListener.Keycode keycodes)
+            {
+                SetTextBoxText(keycodes.ToString() + " pressed");
+            }
+            
+            
+            
+            private void SetTextBoxText(string text)
+            {
+                if (textBox1.InvokeRequired)
+                {
+                    textBox1.Invoke(new SetTextBoxTextInvoker(SetTextBoxText), text);
+                }
+                else
+                {
+                    textBox1.Text += text + Environment.NewLine;
+                    textBox1.SelectionStart = textBox1.TextLength;
+                    textBox1.ScrollToCaret();
+                }
+            
+            }
+             </code>
+             </example>
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Listener.AllKeys">
+            <summary>
+            Listen for all keypresses
+            </summary>
+        </member>
+        <member name="M:KeyboardListener.Listener.AddKeycode(KeyboardListener.Keycode)">
+            <summary>
+            Adds a keycode that the listener should listen for.
+            </summary>
+            <param name="keycode">Keycode to be added to the watch list.</param>
+        </member>
+        <member name="M:KeyboardListener.Listener.RemoveKeycode(KeyboardListener.Keycode)">
+            <summary>
+            Removes a single keycode from the list of keycodes to listen for.
+            </summary>
+            <param name="keycode">Keycode to be removed from the watch list.</param>
+        </member>
+        <member name="M:KeyboardListener.Listener.ClearKeycodes">
+            <summary>
+            Clears all keycodes that the listener is currently looking for.
+            </summary>
+        </member>
+        <member name="M:KeyboardListener.Listener.Listen">
+            <summary>
+            Start listening for the selected keys
+            </summary>
+        </member>
+        <member name="M:KeyboardListener.Listener.StopListening">
+            <summary>
+            Stop listening for keystrokes
+            </summary>
+        </member>
+        <member name="E:KeyboardListener.Listener.KeyPressed">
+            <summary>
+            Event that is raised whenever a keypress that is being watched occurs.
+            </summary>
+        </member>
+        <member name="T:KeyboardListener.Listener.KeypressedEventHandler">
+            <summary>
+            Delegate for the event that is raised whenever a keypress that is being watched occurs.
+            </summary>
+            <param name="keycodes">Keycode that fired the event</param>
+        </member>
+        <member name="T:KeyboardListener.Keycode">
+            <summary>
+            Windows Keycode constants.  
+              <p />Sources: http://delphi.about.com/od/objectpascalide/l/blvkc.htm <br/>
+                       http://api.farmanager.com/en/winapi/virtualkeycodes.html
+            </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_LBUTTON">
+             <summary>
+            Left mouse button
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_RBUTTON">
+             <summary>
+            Right mouse button
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_CANCEL">
+             <summary>
+            Control-break processing
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_MBUTTON">
+             <summary>
+            Middle mouse button (three-button mouse)
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_BACK">
+             <summary>
+            BACKSPACE key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_TAB">
+             <summary>
+            TAB key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_CLEAR">
+             <summary>
+            CLEAR key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_RETURN">
+             <summary>
+            ENTER key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_SHIFT">
+             <summary>
+            SHIFT key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_CONTROL">
+             <summary>
+            CTRL key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_MENU">
+             <summary>
+            ALT key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_PAUSE">
+             <summary>
+            PAUSE key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_CAPITAL">
+             <summary>
+            CAPS LOCK key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_ESCAPE">
+             <summary>
+            ESC key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_SPACE">
+             <summary>
+            SPACEBAR
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_PRIOR">
+             <summary>
+            PAGE UP key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_NEXT">
+             <summary>
+            PAGE DOWN key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_END">
+             <summary>
+            END key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_HOME">
+             <summary>
+            HOME key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_LEFT">
+             <summary>
+            LEFT ARROW key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_UP">
+             <summary>
+            UP ARROW key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_RIGHT">
+             <summary>
+            RIGHT ARROW key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_DOWN">
+             <summary>
+            DOWN ARROW key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_SELECT">
+             <summary>
+            SELECT key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_PRINT">
+             <summary>
+            PRINT key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_EXECUTE">
+             <summary>
+            EXECUTE key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_SNAPSHOT">
+             <summary>
+            PRINT SCREEN key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_INSERT">
+             <summary>
+            INS key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_DELETE">
+             <summary>
+            DEL key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_HELP">
+             <summary>
+            HELP key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_0">
+             <summary>
+            0 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_1">
+             <summary>
+            1 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_2">
+             <summary>
+            2 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_3">
+             <summary>
+            3 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_4">
+             <summary>
+            4 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_5">
+             <summary>
+            5 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_6">
+             <summary>
+            6 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_7">
+             <summary>
+            7 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_8">
+             <summary>
+            8 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_9">
+             <summary>
+            9 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_A">
+             <summary>
+            A key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_B">
+             <summary>
+            B key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_C">
+             <summary>
+            C key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_D">
+             <summary>
+            D key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_E">
+             <summary>
+            E key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_F">
+             <summary>
+            F key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_G">
+             <summary>
+            G key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_H">
+             <summary>
+            H key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_I">
+             <summary>
+            I key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_J">
+             <summary>
+            J key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_K">
+             <summary>
+            K key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_L">
+             <summary>
+            L key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_M">
+             <summary>
+            M key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_N">
+             <summary>
+            N key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_O">
+             <summary>
+            O key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_P">
+             <summary>
+            P key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_Q">
+             <summary>
+            Q key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_R">
+             <summary>
+            R key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_S">
+             <summary>
+            S key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_T">
+             <summary>
+            T key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_U">
+             <summary>
+            U key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_V">
+             <summary>
+            V key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_W">
+             <summary>
+            W key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_X">
+             <summary>
+            X key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_Y">
+             <summary>
+            Y key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_Z">
+             <summary>
+            Z key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_LWIN">
+            <summary>
+            Left Windows Key 
+            </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_RWIN">
+            <summary>
+            Right Windows Key
+            </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_APPS">
+            <summary>
+            Applications Key
+            </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_SLEEP">
+            <summary>
+            Computer Sleep Key
+            </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_NUMPAD0">
+             <summary>
+            Numeric keypad 0 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_NUMPAD1">
+             <summary>
+            Numeric keypad 1 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_NUMPAD2">
+             <summary>
+            Numeric keypad 2 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_NUMPAD3">
+             <summary>
+            Numeric keypad 3 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_NUMPAD4">
+             <summary>
+            Numeric keypad 4 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_NUMPAD5">
+             <summary>
+            Numeric keypad 5 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_NUMPAD6">
+             <summary>
+            Numeric keypad 6 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_NUMPAD7">
+             <summary>
+            Numeric keypad 7 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_NUMPAD8">
+             <summary>
+            Numeric keypad 8 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_NUMPAD9">
+             <summary>
+            Numeric keypad 9 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_MULTIPLY">
+            <summary>
+            Multiply Key
+            </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_ADD">
+            <summary>
+            Add Key
+            </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_SEPARATOR">
+             <summary>
+            Separator key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_SUBTRACT">
+             <summary>
+            Subtract key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_DECIMAL">
+             <summary>
+            Decimal key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_DIVIDE">
+             <summary>
+            Divide key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_F1">
+             <summary>
+            F1 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_F2">
+             <summary>
+            F2 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_F3">
+             <summary>
+            F3 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_F4">
+             <summary>
+            F4 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_F5">
+             <summary>
+            F5 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_F6">
+             <summary>
+            F6 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_F7">
+             <summary>
+            F7 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_F8">
+             <summary>
+            F8 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_F9">
+             <summary>
+            F9 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_F10">
+             <summary>
+            F10 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_F11">
+             <summary>
+            F11 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_F12">
+             <summary>
+            F12 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_F13">
+             <summary>
+            F13 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_F14">
+             <summary>
+            F14 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_F15">
+             <summary>
+            F15 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_F16">
+             <summary>
+            F16 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_F17">
+             <summary>
+            F17 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_F18">
+             <summary>
+            F18 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_F19">
+             <summary>
+            F19 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_F20">
+             <summary>
+            F20 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_F21">
+             <summary>
+            F21 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_F22">
+             <summary>
+            F22 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_F23">
+             <summary>
+            F23 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_F24">
+             <summary>
+            F24 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_NUMLOCK">
+             <summary>
+            NUM LOCK key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_SCROLL">
+             <summary>
+            SCROLL LOCK key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_LSHIFT">
+             <summary>
+            Left SHIFT key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_RSHIFT">
+             <summary>
+            Right SHIFT key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_LCONTROL">
+             <summary>
+            Left CONTROL key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_RCONTROL">
+             <summary>
+            Right CONTROL key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_LMENU">
+             <summary>
+            Left MENU key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_RMENU">
+             <summary>
+            Right MENU key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_BROWSER_BACK">
+             <summary>
+            Windows 2000/XP/2003/Vista/2008: Browser Back key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_BROWSER_FORWARD">
+             <summary>
+            Windows 2000/XP/2003/Vista/2008: Browser Forward key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_BROWSER_REFRESH">
+             <summary>
+            Windows 2000/XP/2003/Vista/2008: Browser Refresh key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_BROWSER_STOP">
+             <summary>
+            Windows 2000/XP/2003/Vista/2008: Browser Stop key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_BROWSER_SEARCH">
+             <summary>
+            Windows 2000/XP/2003/Vista/2008: Browser Search key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_BROWSER_FAVORITES">
+             <summary>
+            Windows 2000/XP/2003/Vista/2008: Browser Favorites key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_BROWSER_HOME">
+             <summary>
+            Windows 2000/XP/2003/Vista/2008: Browser Start and Home key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_VOLUME_MUTE">
+             <summary>
+            Windows 2000/XP/2003/Vista/2008: Volume Mute key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_VOLUME_DOWN">
+             <summary>
+            Windows 2000/XP/2003/Vista/2008: Volume Down key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_VOLUME_UP">
+             <summary>
+            Windows 2000/XP/2003/Vista/2008: Volume Up key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_MEDIA_NEXT_TRACK">
+             <summary>
+            Windows 2000/XP/2003/Vista/2008: Next Track key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_MEDIA_PREV_TRACK">
+             <summary>
+            Windows 2000/XP/2003/Vista/2008: Previous Track key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_MEDIA_STOP">
+             <summary>
+            Windows 2000/XP/2003/Vista/2008: Stop Media key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_MEDIA_PLAY_PAUSE">
+             <summary>
+            Windows 2000/XP/2003/Vista/2008: Play/Pause Media key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_LAUNCH_MAIL">
+             <summary>
+            Windows 2000/XP/2003/Vista/2008: Start Mail key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_LAUNCH_MEDIA_SELECT">
+             <summary>
+            Windows 2000/XP/2003/Vista/2008: Select Media key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_LAUNCH_APP1">
+             <summary>
+            Windows 2000/XP/2003/Vista/2008: Start Application 1 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_LAUNCH_APP2">
+             <summary>
+            Windows 2000/XP/2003/Vista/2008: Start Application 2 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_OEM_1">
+             <summary>
+            Windows 2000/XP/2003/Vista/2008: For the US standard keyboard, the ';:' key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_OEM_PLUS">
+             <summary>
+            Windows 2000/XP/2003/Vista/2008: For any country/region, the '+' key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_OEM_COMMA">
+             <summary>
+            Windows 2000/XP/2003/Vista/2008: For any country/region, the ',' key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_OEM_MINUS">
+             <summary>
+            Windows 2000/XP/2003/Vista/2008: For any country/region, the '-' key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_OEM_PERIOD">
+             <summary>
+            Windows 2000/XP/2003/Vista/2008: For any country/region, the '.' key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_OEM_2">
+             <summary>
+            Windows 2000/XP/2003/Vista/2008: For the US standard keyboard, the '/?' key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_OEM_3">
+             <summary>
+            Windows 2000/XP/2003/Vista/2008: For the US standard keyboard, the '`~' key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_OEM_4">
+             <summary>
+            Windows 2000/XP/2003/Vista/2008: For the US standard keyboard, the '[{' key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_OEM_5">
+             <summary>
+            Windows 2000/XP/2003/Vista/2008: For the US standard keyboard, the '\|' key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_OEM_6">
+             <summary>
+            Windows 2000/XP/2003/Vista/2008: For the US standard keyboard, the ']}' key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_OEM_7">
+             <summary>
+            Windows 2000/XP/2003/Vista/2008: For the US standard keyboard, the 'single-quote/double-quote' key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_OEM_8">
+             <summary>
+            Used for miscellaneous characters; it can vary by keyboard.
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_OEM_102">
+             <summary>
+            Windows 2000/XP/2003/Vista/2008: Either the angle bracket key or the backslash key on the RT 102-key keyboard
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_PROCESSKEY">
+             <summary>
+            Windows 95/98/Me, Windows NT/2000/XP/2003/Vista/2008: IME PROCESS key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_PACKET">
+             <summary>
+            Windows 2000/XP/2003/Vista/2008: Used to pass Unicode characters as if they were keystrokes. The VK_PACKET key is the low word of a 32-bit Virtual Key value used for non-keyboard input methods. For more information, see Remark in KEYBDINPUT , SendInput , WM_KEYDOWN , and WM_KEYUP
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_OEM_RESET">
+             <summary>
+            Only used by Nokia.
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_OEM_JUMP">
+             <summary>
+            Only used by Nokia.
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_OEM_PA1">
+             <summary>
+            Only used by Nokia.
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_OEM_PA2">
+             <summary>
+            Only used by Nokia.
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_OEM_PA3">
+             <summary>
+            Only used by Nokia.
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_OEM_WSCTRL">
+             <summary>
+            Only used by Nokia.
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_OEM_CUSEL">
+             <summary>
+            Only used by Nokia.
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_OEM_ATTN">
+             <summary>
+            Only used by Nokia.
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_OEM_FINNISH">
+             <summary>
+            Only used by Nokia.
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_OEM_COPY">
+             <summary>
+            Only used by Nokia.
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_OEM_AUTO">
+             <summary>
+            Only used by Nokia.
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_OEM_ENLW">
+             <summary>
+            Only used by Nokia.
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_OEM_BACKTAB">
+             <summary>
+            Only used by Nokia.
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_ATTN">
+             <summary>
+            Attn key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_CRSEL">
+             <summary>
+            CrSel key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_EXSEL">
+             <summary>
+            ExSel key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_EREOF">
+             <summary>
+            Erase EOF key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_PLAY">
+             <summary>
+            Play key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_ZOOM">
+             <summary>
+            Zoom key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_NONAME">
+             <summary>
+            Reserved for future use.
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_PA1">
+             <summary>
+            PA1 key
+             </summary>
+        </member>
+        <member name="F:KeyboardListener.Keycode.VK_OEM_CLEAR">
+             <summary>
+            Clear key
+             </summary>
+        </member>
+    </members>
+</doc>

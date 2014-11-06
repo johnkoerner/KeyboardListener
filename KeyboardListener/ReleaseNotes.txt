@@ -1,0 +1,15 @@
+﻿
+
+
+Version 1.0.1
+-----------------
+Fixed a bug that caused multi key combos not to work in other applications (i.e. Ctrl-C would no longer perform a copy).
+Stopped the listener on destruction, even if StopListen was not explicitly called.
+
+
+
+
+Version 1.0.0
+-----------------
+Initial Version.
+Contains support for all keys and single key presses.
